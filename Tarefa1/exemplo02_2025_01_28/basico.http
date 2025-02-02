@@ -1,0 +1,27 @@
+
+### Testar servicos Básico
+
+@endereco=http://localhost:3000
+
+
+#########
+
+GET {{endereco}}/vivo
+
+#########
+
+GET {{endereco}}/basico/10
+Content-Type: application/json
+
+#########
+
+
+POST {{endereco}}/basico
+Content-Type: application/json
+{
+    "nome": "Fulano",
+    "idade": 30
+}
+
+#########
+
