@@ -1,5 +1,5 @@
 export interface Trabalho {
-    id: string;
+    id: number;
     titulo: string;
     aluno: string;
     disciplina: string;

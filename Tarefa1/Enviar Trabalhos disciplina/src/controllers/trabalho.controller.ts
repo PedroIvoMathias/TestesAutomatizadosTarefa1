@@ -1,29 +1,56 @@
 import { Request, Response } from 'express';
 import { Trabalho } from '../models/trabalho.model';
 import * as TrabalhoService from '../services/trabalho.service';
+import { TrabalhoIController } from '../contracts/iusecase';
 
-export class TrabalhoController {
-    async enviarTrabalho(req: Request, res: Response) {
+export class TrabalhoController implements TrabalhoIController {
+    public async criarTrabalho(req: Request, res: Response): Promise<void> {
         try {
-            const trabalho: Trabalho = req.body;
-            const arquivo = req.file;
-
-            if (!arquivo) {
-                return res.status(400).json({ error: 'Arquivo não fornecido' });
+            const { titulo, aluno, disciplina } = req.body;
+            
+            if (!titulo || !aluno || !disciplina) {
+                return res.status(400).json({ 
+                    error: 'Dados incompletos. Título, aluno e disciplina são obrigatórios.' 
+                });
             }
 
-            trabalho.arquivo = arquivo.path;
-            trabalho.status = 'entregue';
-            trabalho.dataEntrega = new Date();
+            const trabalho: Omit<Trabalho, 'id'> = {
+                titulo,
+                aluno,
+                disciplina,
+                dataEntrega: new Date(),
+                arquivo: req.file?.path || '',
+                status: 'pendente'
+            };
 
-            const novoTrabalho = await TrabalhoService.salvarTrabalho(trabalho);
+            const novoTrabalho = await TrabalhoService.criarTrabalho(trabalho);
             res.status(201).json(novoTrabalho);
         } catch (error) {
-            res.status(500).json({ error: 'Erro ao enviar trabalho' });
+            res.status(500).json({ error: 'Erro ao criar trabalho' });
         }
     }
 
-    async listarTrabalhos(req: Request, res: Response) {
+    public async findById(req: Request, res: Response): Promise<void> {
+        try {
+            const id = Number(req.params.id);
+            
+            if (isNaN(id)) {
+                return res.status(400).json({ error: 'ID inválido' });
+            }
+
+            const trabalho = await TrabalhoService.buscarTrabalhoPorId(id);
+            
+            if (!trabalho) {
+                return res.status(404).json({ error: 'Trabalho não encontrado' });
+            }
+
+            res.json(trabalho);
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao buscar trabalho' });
+        }
+    }
+
+    public async listarTodosOsTrabalhos(req: Request, res: Response): Promise<void> {
         try {
             const trabalhos = await TrabalhoService.listarTrabalhos();
             res.json(trabalhos);
@@ -32,15 +59,23 @@ export class TrabalhoController {
         }
     }
 
-    async avaliarTrabalho(req: Request, res: Response) {
+    public async delete(req: Request, res: Response): Promise<void> {
         try {
-            const { id } = req.params;
-            const { nota, comentarios } = req.body;
+            const id = Number(req.params.id);
 
-            const trabalho = await TrabalhoService.avaliarTrabalho(id, nota, comentarios);
-            res.json(trabalho);
+            if (isNaN(id)) {
+                return res.status(400).json({ error: 'ID inválido' });
+            }
+            
+            const trabalhoExistente = await TrabalhoService.buscarTrabalhoPorId(id);
+            if (!trabalhoExistente) {
+                return res.status(404).json({ error: 'Trabalho não encontrado' });
+            }
+
+            await TrabalhoService.deletarTrabalho(id);
+            res.status(204).send();
         } catch (error) {
-            res.status(500).json({ error: 'Erro ao avaliar trabalho' });
+            res.status(500).json({ error: 'Erro ao deletar trabalho' });
         }
     }
 }
