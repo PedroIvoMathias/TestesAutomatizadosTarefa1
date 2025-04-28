@@ -8,6 +8,10 @@ namespace EnviarTrabalhos.Models.UseCase
     {
         public async Task<EnviarTrabalhoSaidaDTO> Execute(EnviarTrabalhoEntradaDTO entrada)
         {
+            if (entrada == null)
+                throw new BusinessException("Dados de envio inválidos.");
+
+
             // Validação dos dados de entrada
             if (string.IsNullOrWhiteSpace(entrada.NomeAluno) || string.IsNullOrWhiteSpace(entrada.Titulo) || string.IsNullOrWhiteSpace(entrada.Conteudo))
                 throw new BusinessException("Nome do aluno, título e conteúdo são obrigatórios.");
@@ -17,7 +21,7 @@ namespace EnviarTrabalhos.Models.UseCase
 
             // Criação do objeto Trabalho
             var trabalho = new Trabalho(
-                trabalhoId:0,  // Aqui o ID do trabalho poderia ser gerado pelo banco de dados
+                trabalhoId: 0,  // Aqui o ID do trabalho poderia ser gerado pelo banco de dados
                 nomeAluno: entrada.NomeAluno,
                 titulo: entrada.Titulo,
                 conteudo: entrada.Conteudo,
@@ -25,14 +29,15 @@ namespace EnviarTrabalhos.Models.UseCase
             );
 
             // Retornando um objeto de saída que pode incluir um status de sucesso, ID do trabalho, etc
-            var saida =  new EnviarTrabalhoSaidaDTO
+            var saida = new EnviarTrabalhoSaidaDTO
             {
                 IdTrabalho = trabalho.TrabalhoId, // O ID gerado pelo banco
                 Status = "Trabalho enviado com sucesso",
-                DataEnvio = trabalho.DataEnvio
+                DataEnvio = trabalho.DataEnvio,
+                Trabalho = trabalho
             };
 
-            return await Task.FromResult( saida );
+            return await Task.FromResult(saida);
         }
     }
 }

@@ -413,6 +413,88 @@
       ]
     },
     {
+      "Route": "lib/bootstrap/dist/css/bootstrap-Darkly.css",
+      "AssetFile": "lib/bootstrap/dist/css/bootstrap-Darkly.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "280438"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"n4DPECByP+k8wt0+S2bdKYU5kPPWtWTLUvhNFw2iuXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:12:47 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-n4DPECByP+k8wt0+S2bdKYU5kPPWtWTLUvhNFw2iuXg="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-Darkly.vo2cgafiwc.css",
+      "AssetFile": "lib/bootstrap/dist/css/bootstrap-Darkly.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "280438"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"n4DPECByP+k8wt0+S2bdKYU5kPPWtWTLUvhNFw2iuXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:12:47 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vo2cgafiwc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-n4DPECByP+k8wt0+S2bdKYU5kPPWtWTLUvhNFw2iuXg="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap-Darkly.css"
+        }
+      ]
+    },
+    {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.agp80tu62r.css",
       "AssetFile": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "Selectors": [],

@@ -17,7 +17,7 @@ namespace EnviarTrabalhos.Repositories
         public async Task AdicionarAsync(Trabalho trabalho)
         {
             await _context.Trabalhos.AddAsync(trabalho);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
         }
 

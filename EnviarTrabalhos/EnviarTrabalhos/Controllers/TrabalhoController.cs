@@ -26,8 +26,6 @@ namespace EnviarTrabalhos.Controllers
         public async Task< IActionResult> ListarPorId(int id)
         {
             var trabalho = await _trabalhoRepository.ObterPorIdAsync(id);
-            if (trabalho == null)
-                return NotFound();
 
             return View(trabalho);
         }
@@ -49,15 +47,8 @@ namespace EnviarTrabalhos.Controllers
 
             var resultado = await _enviarTrabalhoUseCase.Execute(entrada);
 
-            var trabalho = new Trabalho(
-                trabalhoId: 0,
-                nomeAluno: entrada.NomeAluno,
-                titulo: entrada.Titulo,
-                conteudo: entrada.Conteudo,
-                dataEnvio: resultado.DataEnvio
-            );
 
-            await _trabalhoRepository.AdicionarAsync(trabalho);
+            await _trabalhoRepository.AdicionarAsync(resultado.Trabalho);
 
             return RedirectToAction(nameof(ListarTrabalhos));
         }

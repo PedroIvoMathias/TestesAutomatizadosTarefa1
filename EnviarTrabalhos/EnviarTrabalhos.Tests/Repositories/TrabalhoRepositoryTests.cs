@@ -55,5 +55,13 @@ namespace EnviarTrabalhos.Tests.Repositories
 
             Assert.Equal(2, lista.Count());
         }
+
+        [Fact]
+        public async Task ObterPorIdAsync_ComIdInexistente_DeveRetornarNulo()
+        {
+            var resultado = await _repository.ObterPorIdAsync(999); // ID que não existe
+
+            Assert.Null(resultado);
+        }
     }
 }

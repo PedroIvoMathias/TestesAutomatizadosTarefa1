@@ -19,6 +19,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connecti
 builder.Services.AddTransient<ITrabalhoRepository, TrabalhoRepository>();
 builder.Services.AddScoped<IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO>, EnviarTrabalhoUseCase>();
 
+//builder.Services.AddTransient<ExceptionMiddleware>();
+
 var app = builder.Build();
 //exceções
 app.UseMiddleware<ExceptionMiddleware>();
@@ -41,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Trabalho}/{action=ListarTrabalhos}/{id?}");
 
 app.Run();
