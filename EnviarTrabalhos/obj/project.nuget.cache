@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R8MUwPDZW4U=",
+  "dgSpecHash": "duvQ4AM0tSE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
+  "projectFilePath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coont\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

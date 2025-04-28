@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vd/hVEZBqlw=",
+  "dgSpecHash": "0gEaWxdxG6c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
+  "projectFilePath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coont\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
@@ -115,6 +115,7 @@
     "C:\\Users\\coont\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.3\\pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512",
+    "C:\\Users\\coont\\.nuget\\packages\\selenium.support\\4.31.0\\selenium.support.4.31.0.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\selenium.webdriver\\4.31.0\\selenium.webdriver.4.31.0.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\coont\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

@@ -12,6 +12,7 @@
           "Microsoft.EntityFrameworkCore.InMemory": "9.0.4",
           "Microsoft.NET.Test.Sdk": "17.13.0",
           "Moq": "4.20.72",
+          "Selenium.Support": "4.31.0",
           "Selenium.WebDriver": "4.31.0",
           "coverlet.collector": "6.0.0",
           "xunit": "2.9.3",
@@ -1737,6 +1738,17 @@
           }
         }
       },
+      "Selenium.Support/4.31.0": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.31.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
       "Selenium.WebDriver/4.31.0": {
         "runtime": {
           "lib/net8.0/WebDriver.dll": {
@@ -2785,6 +2797,13 @@
       "sha512": "sha512-gOHP6v/nFp5V/FgHqv9mZocGqCLGofihEX9dTbLhiXX3H7SJHmGX70GIPUpiqLT+1jIfDxg1PZh9MTUKuk7Kig==",
       "path": "pomelo.entityframeworkcore.mysql/8.0.3",
       "hashPath": "pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512"
+    },
+    "Selenium.Support/4.31.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dAGFDnl5rGc7eG12PJfrEU25+LMWUkBcCzp9VsJh+L4xfa6aQ7/7KSnCWDJUxiK9CjWgWJGkNYWVR7OawGvb1Q==",
+      "path": "selenium.support/4.31.0",
+      "hashPath": "selenium.support.4.31.0.nupkg.sha512"
     },
     "Selenium.WebDriver/4.31.0": {
       "type": "package",

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EnviarTrabalhos.Controllers
 {
     public class TrabalhoController : Controller
-    {
+    {//dependendo apenas das interfaces, não dos objetos em si.
         private readonly ITrabalhoRepository _trabalhoRepository;
         private readonly IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO> _enviarTrabalhoUseCase;
 
@@ -36,12 +36,13 @@ namespace EnviarTrabalhos.Controllers
         }
 
         // POST: Enviar Trabalho
+        //Depois de clicar em enviar na view, ele pega todos os dados que vem de lá e joga na variavel entrada
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnviarTrabalho(EnviarTrabalhoEntradaDTO entrada)
         {
             if (!ModelState.IsValid)
-            {
+            {//retorna a tela preenchida com os valores que ele colocou antes
                 return View(entrada);
             }
 

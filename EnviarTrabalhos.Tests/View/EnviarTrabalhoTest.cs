@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Support.UI;
 using Xunit;
 
 namespace EnviarTrabalhos.Tests.View
@@ -12,13 +13,16 @@ namespace EnviarTrabalhos.Tests.View
             // Configura o Selenium WebDriver
             using (var driver = new EdgeDriver())
             {
-                driver.Navigate().GoToUrl("https://localhost:7064/Trabalho/EnviarTrabalho");
+                //ULR de acesso para testar o front(Usando a url do site upado pelo railway)
+                //Se for rodar o test usando a url local, lembre de configurar o certificado https para conseguir acessar.
+                driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
                 // Preenche o formulário
                 driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
                 driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
                 driver.FindElement(By.Id("conteudo")).SendKeys("Este é um conteúdo de exemplo com mais de 50 caracteres.");
-                driver.FindElement(By.Id("disciplina")).SendKeys("Matematica");
+                var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+                selectElement.SelectByValue("1");  // Seleciona o valor "1", que corresponde a "Matemática"
 
                 // Envia o formulário
                 driver.FindElement(By.CssSelector("button[type='submit']")).Click();

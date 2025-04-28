@@ -3,10 +3,10 @@ using EnviarTrabalhos.Models.DTO;
 using EnviarTrabalhos.Models.Entities;
 
 namespace EnviarTrabalhos.Models.UseCase
-{
+{//aqui eu recebo o esqueleto da função que preciso para implementar com os dados que chegam pelo controller
     public class EnviarTrabalhoUseCase : IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO>
     {
-        public async Task<EnviarTrabalhoSaidaDTO> Execute(EnviarTrabalhoEntradaDTO entrada)
+        public async Task<EnviarTrabalhoSaidaDTO> Execute(EnviarTrabalhoEntradaDTO entrada)//justamente aqui vem os dados que preenchi lá na página de controller.
         {
             if (entrada == null)
                 throw new BusinessException("Dados de envio inválidos.");
@@ -37,7 +37,7 @@ namespace EnviarTrabalhos.Models.UseCase
                 Trabalho = trabalho
             };
 
-            return await Task.FromResult(saida);
+            return await Task.FromResult(saida);//aqui sai o dto que recebe no controller para salvar
         }
     }
 }

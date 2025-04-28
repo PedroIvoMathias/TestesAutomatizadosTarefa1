@@ -6260,11 +6260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
+      "projectUniqueName": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
       "projectName": "EnviarTrabalhos",
-      "projectPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
+      "projectPath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\EnviarTrabalhos.csproj",
       "packagesPath": "C:\\Users\\coont\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\obj\\",
+      "outputPath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -2061,6 +2061,22 @@
           }
         }
       },
+      "Selenium.Support/4.31.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.31.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Selenium.WebDriver/4.31.0": {
         "type": "package",
         "compile": {
@@ -6188,6 +6204,20 @@
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
+    "Selenium.Support/4.31.0": {
+      "sha512": "dAGFDnl5rGc7eG12PJfrEU25+LMWUkBcCzp9VsJh+L4xfa6aQ7/7KSnCWDJUxiK9CjWgWJGkNYWVR7OawGvb1Q==",
+      "type": "package",
+      "path": "selenium.support/4.31.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.xml",
+        "selenium.support.4.31.0.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
     "Selenium.WebDriver/4.31.0": {
       "sha512": "RT5Pg6UVyxe/+S/H808VAbfXX4kHQdvo/U28oViwUcCpC4WL7zHq2GgxY/b9zNLTcwJ8zfqu+WmHPifkTx+BCQ==",
       "type": "package",
@@ -7190,6 +7220,7 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 9.0.4",
       "Microsoft.NET.Test.Sdk >= 17.13.0",
       "Moq >= 4.20.72",
+      "Selenium.Support >= 4.31.0",
       "Selenium.WebDriver >= 4.31.0",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.9.3",
@@ -7203,11 +7234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
       "projectName": "EnviarTrabalhos.Tests",
-      "projectPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
+      "projectPath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj",
       "packagesPath": "C:\\Users\\coont\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\obj\\",
+      "outputPath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7229,8 +7260,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\EnviarTrabalhos.csproj": {
-              "projectPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\EnviarTrabalhos.csproj"
+            "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\EnviarTrabalhos.csproj": {
+              "projectPath": "C:\\Users\\coont\\Documents\\Faculdade matéria Teste\\Testes Automatizados\\TestesAutomatizadosTarefa1\\EnviarTrabalhos\\EnviarTrabalhos.csproj"
             }
           }
         }
@@ -7262,6 +7293,10 @@
           "Moq": {
             "target": "Package",
             "version": "[4.20.72, )"
+          },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.31.0, )"
           },
           "Selenium.WebDriver": {
             "target": "Package",

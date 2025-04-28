@@ -21,16 +21,16 @@ namespace EnviarTrabalhos.Tests.Controllers
             _mockUseCase = new Mock<IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO>>();
             _controller = new TrabalhoController(_mockRepo.Object, _mockUseCase.Object);
         }
-
+        //fact é o teste todo  não é o cenário em si, mas o teste completo, incluindo o cenário, a ação e as verificações.
         [Fact]
         public async Task ListarTrabalhos_DeveRetornarViewComTrabalhos()
         {
-            _mockRepo.Setup(r => r.ListarTodosAsync()).ReturnsAsync(new List<Trabalho>());
+            _mockRepo.Setup(r => r.ListarTodosAsync()).ReturnsAsync(new List<Trabalho>()); //aqui preparo o cenério
 
-            var result = await _controller.ListarTrabalhos();
+            var result = await _controller.ListarTrabalhos(); //Executar a ação que será testada
 
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsAssignableFrom<IEnumerable<Trabalho>>(viewResult.Model);
+            var viewResult = Assert.IsType<ViewResult>(result);//Verificar o resultado esperado (se é realmente uma tela)
+            Assert.IsAssignableFrom<IEnumerable<Trabalho>>(viewResult.Model);//Assert: Você está garantindo que o model da View é uma coleção de Trabalho (e não, por exemplo, um DTO ou outro objeto qualquer).
         }
 
         [Fact]
