@@ -11,18 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//registrando o serviço
+//registrando o serviï¿½o
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-//registrando para a injeção de dependência
+//registrando para a injeï¿½ï¿½o de dependï¿½ncia
 builder.Services.AddTransient<ITrabalhoRepository, TrabalhoRepository>();
 builder.Services.AddScoped<IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO>, EnviarTrabalhoUseCase>();
 
 //builder.Services.AddTransient<ExceptionMiddleware>();
 
 var app = builder.Build();
-//exceções
+//exceï¿½ï¿½es
 app.UseMiddleware<ExceptionMiddleware>();
 
 
@@ -33,6 +33,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+//agora
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
