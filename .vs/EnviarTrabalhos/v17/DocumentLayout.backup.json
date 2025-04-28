@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6E307E3D-2A50-4A63-87DD-FB040DA3B676}|EnviarTrabalhos\\EnviarTrabalhos.csproj|c:\\users\\coont\\documents\\projetos c#\\enviartrabalhos\\enviartrabalhos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E307E3D-2A50-4A63-87DD-FB040DA3B676}|EnviarTrabalhos\\EnviarTrabalhos.csproj|solutionrelative:enviartrabalhos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|c:\\users\\coont\\documents\\projetos c#\\enviartrabalhos\\enviartrabalhos.tests\\view\\enviartrabalhotest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|solutionrelative:enviartrabalhos.tests\\view\\enviartrabalhotest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|c:\\users\\coont\\documents\\projetos c#\\enviartrabalhos\\enviartrabalhos.tests\\controllers\\trabalhocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|solutionrelative:enviartrabalhos.tests\\controllers\\trabalhocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|c:\\users\\coont\\documents\\projetos c#\\enviartrabalhos\\enviartrabalhos.tests\\repositories\\trabalhorepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|solutionrelative:enviartrabalhos.tests\\repositories\\trabalhorepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|c:\\users\\coont\\documents\\projetos c#\\enviartrabalhos\\enviartrabalhos.tests\\usecases\\enviartrabalhousecasetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45355138-EFA0-467D-9748-4116B9374363}|EnviarTrabalhos.Tests\\EnviarTrabalhos.Tests.csproj|solutionrelative:enviartrabalhos.tests\\usecases\\enviartrabalhousecasetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TrabalhoControllerTests.cs",
+              "DocumentMoniker": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\Controllers\\TrabalhoControllerTests.cs",
+              "RelativeDocumentMoniker": "EnviarTrabalhos.Tests\\Controllers\\TrabalhoControllerTests.cs",
+              "ToolTip": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\Controllers\\TrabalhoControllerTests.cs",
+              "RelativeToolTip": "EnviarTrabalhos.Tests\\Controllers\\TrabalhoControllerTests.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwC4AAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T06:40:24.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TrabalhoRepositoryTests.cs",
+              "DocumentMoniker": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\Repositories\\TrabalhoRepositoryTests.cs",
+              "RelativeDocumentMoniker": "EnviarTrabalhos.Tests\\Repositories\\TrabalhoRepositoryTests.cs",
+              "ToolTip": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\Repositories\\TrabalhoRepositoryTests.cs",
+              "RelativeToolTip": "EnviarTrabalhos.Tests\\Repositories\\TrabalhoRepositoryTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T06:40:22.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\Program.cs",
+              "RelativeDocumentMoniker": "EnviarTrabalhos\\Program.cs",
+              "ToolTip": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos\\Program.cs",
+              "RelativeToolTip": "EnviarTrabalhos\\Program.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAewA0AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T06:39:45.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EnviarTrabalhoUseCaseTests.cs",
+              "DocumentMoniker": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\UseCases\\EnviarTrabalhoUseCaseTests.cs",
+              "RelativeDocumentMoniker": "EnviarTrabalhos.Tests\\UseCases\\EnviarTrabalhoUseCaseTests.cs",
+              "ToolTip": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\UseCases\\EnviarTrabalhoUseCaseTests.cs",
+              "RelativeToolTip": "EnviarTrabalhos.Tests\\UseCases\\EnviarTrabalhoUseCaseTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T06:21:21.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnviarTrabalhoTest.cs",
+              "DocumentMoniker": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\View\\EnviarTrabalhoTest.cs",
+              "RelativeDocumentMoniker": "EnviarTrabalhos.Tests\\View\\EnviarTrabalhoTest.cs",
+              "ToolTip": "C:\\Users\\coont\\Documents\\Projetos C#\\EnviarTrabalhos\\EnviarTrabalhos.Tests\\View\\EnviarTrabalhoTest.cs",
+              "RelativeToolTip": "EnviarTrabalhos.Tests\\View\\EnviarTrabalhoTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T06:20:36.483Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

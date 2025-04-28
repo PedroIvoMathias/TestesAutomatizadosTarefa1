@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Trabalho</title>
+</head>
+<body>
+    <h1>Buscar Trabalho</h1>
+
+    <form class="form-floating" asp-action="ListarPorId" method="get">
+        
+        <input class="form-control" type="text" id="id" name="id" required>
+        <label for="id">Digite o ID do Trabalho:</label><br />
+        <button class="btn btn-primary btn-sm" type="submit">Buscar</button>
+    </form>
+
+    @if (Model != null)
+    {
+        <h2>Resultado da Busca</h2>
+        <p><strong>ID:</strong> @Model.TrabalhoId</p>
+        <p><strong>Aluno:</strong> @Model.NomeAluno</p>
+        <p><strong>Título:</strong> @Model.Titulo</p>
+        <p><strong>Conteúdo:</strong> @Model.Conteudo</p>
+        <p><strong>Data de Envio:</strong> @Model.DataEnvio</p>
+    }
+</body>
+</html>
+
