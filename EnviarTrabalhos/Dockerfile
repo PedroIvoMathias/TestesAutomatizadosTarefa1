@@ -30,17 +30,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "EnviarTrabalhos.dll"]
-
-RUN useradd -m myappuser
-USER myappuser 
-
-CMD ASPNETCORE_URLS="http://*:$PORT" dotnet EnviarTrabalhos.dll
-
-# Variável de ambiente para produção
-#ENV ASPNETCORE_URLS=http://+:5000
-
-# Porta exposta
-#EXPOSE 5000
-
-# Comando para rodar
-#ENTRYPOINT ["dotnet", "EnviarTrabalhos.dll"]
