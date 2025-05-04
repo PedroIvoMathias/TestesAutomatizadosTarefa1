@@ -19,7 +19,7 @@ jobs:
         run: |
           $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
           if (-Not (Test-Path $edgePath)) {
-            throw "Microsoft Edge não encontrado no caminho padrão: $edgePath"
+            throw "Microsoft Edge não encontrado em $edgePath"
           }
 
           $edgeVersion = (Get-Item $edgePath).VersionInfo.FileVersion
@@ -28,8 +28,8 @@ jobs:
           $major = $edgeVersion.Split('.')[0]
           Write-Host "Versão major: $major"
 
-          $response = Invoke-WebRequest -Uri "https://msedgedriver.azureedge.net/LATEST_RELEASE_$major"
-          $driverVersion = [System.Text.Encoding]::UTF8.GetString($response.Content).Trim()
+          $versionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$major"
+          $driverVersion = Invoke-RestMethod -Uri $versionUrl -UseBasicParsing
           Write-Host "Versão do EdgeDriver: $driverVersion"
 
           $driverUrl = "https://msedgedriver.azureedge.net/$driverVersion/edgedriver_win64.zip"
