@@ -25,35 +25,26 @@ jobs:
     - name: Instalar Microsoft Edge
       run: choco install microsoft-edge -y
 
-    - name: Baixar e configurar EdgeDriver compatível
-      shell: bash
+    - name: Baixar EdgeDriver compatível
+      shell: powershell
       run: |
-        # Detectar versão do Microsoft Edge
-        EDGE_VERSION=$(powershell "[System.Diagnostics.FileVersionInfo]::GetVersionInfo('C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe').FileVersion")
-        echo "Detectada versão do Edge: $EDGE_VERSION"
+        $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+        $edgeVersion = (Get-Item $edgePath).VersionInfo.FileVersion
+        Write-Host "Versão do Edge: $edgeVersion"
 
-        # Extrair major version (ex: 136)
-        EDGE_MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
-        echo "Versão major do Edge: $EDGE_MAJOR_VERSION"
+        $major = $edgeVersion.Split('.')[0]
+        Write-Host "Versão major: $major"
 
-        # Buscar última versão do EdgeDriver compatível
-        EDGE_DRIVER_VERSION=$(curl -s https://msedgedriver.azureedge.net/LATEST_RELEASE_$EDGE_MAJOR_VERSION)
-        echo "Versão do EdgeDriver: $EDGE_DRIVER_VERSION"
+        $driverVersion = Invoke-RestMethod -Uri "https://msedgedriver.azureedge.net/LATEST_RELEASE_$major"
+        Write-Host "Versão do EdgeDriver: $driverVersion"
 
-        # Baixar e extrair o driver
-        DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_VERSION}/edgedriver_win64.zip"
-        echo "Baixando EdgeDriver de: $DRIVER_URL"
+        $driverUrl = "https://msedgedriver.azureedge.net/$driverVersion/edgedriver_win64.zip"
+        Write-Host "Baixando EdgeDriver de: $driverUrl"
 
-        curl -L -o edgedriver.zip "$DRIVER_URL"
-
-        # Validar e extrair ZIP
-        if ! unzip -t edgedriver.zip; then
-          echo "Falha ao baixar ou validar o EdgeDriver."
-          exit 1
-        fi
-
-        unzip edgedriver.zip -d edgedriver
-        echo "$(pwd)/edgedriver" >> $GITHUB_PATH
+        Invoke-WebRequest -Uri $driverUrl -OutFile "edgedriver.zip"
+        Expand-Archive -Path "edgedriver.zip" -DestinationPath "edgedriver"
+        $edgedriverPath = Resolve-Path ".\edgedriver"
+        echo "$edgedriverPath" | Out-File -Append -Encoding ascii $env:GITHUB_PATH
 
     - name: Executar testes
       run: dotnet test --no-build --verbosity normal
