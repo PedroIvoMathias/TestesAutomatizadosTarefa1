@@ -34,11 +34,14 @@ jobs:
         echo "Detectada versão do Edge: $EDGE_VERSION (maior: $EDGE_MAJOR_VERSION)"
 
         # Baixar o EdgeDriver correspondente à versão detectada
-        curl -L -o edgedriver.zip https://msedgedriver.azureedge.net/${EDGE_MAJOR_VERSION}.0.0.0/edgedriver_win64.zip
+        DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_MAJOR_VERSION}.0.0.0/edgedriver_win64.zip"
+        echo "Baixando EdgeDriver de: $DRIVER_URL"
         
-        # Verificar se o arquivo foi baixado corretamente
-        if [ ! -f edgedriver.zip ]; then
-          echo "Falha ao baixar o EdgeDriver"
+        curl -L -o edgedriver.zip $DRIVER_URL
+
+        # Verificar se o arquivo baixado é um arquivo ZIP válido
+        if ! unzip -t edgedriver.zip; then
+          echo "Falha ao baixar o EdgeDriver ou o arquivo não é um ZIP válido."
           exit 1
         fi
 
