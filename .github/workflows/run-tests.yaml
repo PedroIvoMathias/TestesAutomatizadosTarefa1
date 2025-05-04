@@ -16,11 +16,11 @@ jobs:
       - name: Verificar versão do Edge
         id: check_edge_version
         run: |
-          $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+          # Tentar buscar a versão do Edge no registro
+          $regKey = "HKLM:\SOFTWARE\Microsoft\Edge\BLBeacon"
           
-          # Verificar se o Edge está instalado no caminho especificado
-          if (Test-Path $edgePath) {
-            $edgeVersion = (Get-ItemProperty -Path $edgePath).Version
+          if (Test-Path $regKey) {
+            $edgeVersion = (Get-ItemProperty -Path $regKey).version
             if ($null -ne $edgeVersion) {
               $majorVersion = $edgeVersion.Split('.')[0]
               Write-Host "Versão do Edge: $edgeVersion"
@@ -31,7 +31,7 @@ jobs:
               exit 1
             }
           } else {
-            Write-Error "Edge não encontrado no caminho $edgePath"
+            Write-Error "Edge não encontrado no registro. Certifique-se de que o Microsoft Edge está instalado."
             exit 1
           }
 
@@ -54,10 +54,8 @@ jobs:
 
       - name: Instalar Dependências do Projeto
         run: |
-          # Instalar dependências do .NET (ajuste se usar outro gerenciador de pacotes)
           dotnet restore
 
       - name: Rodar todos os testes
         run: |
-          # Rodando todos os testes (incluindo Selenium)
           dotnet test --configuration Release
