@@ -1,0 +1,61 @@
+name: Executar Testes Automatizados
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Instalar .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restaurar dependências
+      run: dotnet restore
+
+    - name: Instalar Microsoft Edge
+      run: choco install microsoft-edge -y
+
+    - name: Baixar e configurar EdgeDriver compatível
+      shell: bash
+      run: |
+        # Detectar versão completa do Microsoft Edge
+        EDGE_VERSION=$(powershell "[System.Diagnostics.FileVersionInfo]::GetVersionInfo('C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe').FileVersion")
+        echo "Detectada versão do Edge: $EDGE_VERSION"
+
+        # Obter prefixo major.minor.build (ex: 136.0.3240)
+        EDGE_VERSION_PREFIX=$(echo $EDGE_VERSION | cut -d'.' -f1-3)
+        echo "Prefixo da versão: $EDGE_VERSION_PREFIX"
+
+        # Obter versão exata do EdgeDriver compatível
+        EDGE_DRIVER_VERSION=$(curl -s "https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_PREFIX}")
+        echo "Versão do EdgeDriver: $EDGE_DRIVER_VERSION"
+
+        # Montar URL de download
+        DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_VERSION}/edgedriver_win64.zip"
+        echo "Baixando EdgeDriver de: $DRIVER_URL"
+
+        # Baixar o ZIP
+        curl -L -o edgedriver.zip $DRIVER_URL
+
+        # Validar ZIP
+        if ! unzip -t edgedriver.zip; then
+          echo "Falha ao baixar o EdgeDriver ou o arquivo não é válido."
+          exit 1
+        fi
+
+        # Extrair e adicionar ao PATH
+        unzip edgedriver.zip -d edgedriver
+        echo "$(pwd)/edgedriver" >> $GITHUB_PATH
+
+    - name: Executar testes
+      run: dotnet test --no-build --verbosity normal
