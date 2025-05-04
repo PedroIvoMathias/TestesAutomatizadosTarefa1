@@ -28,32 +28,30 @@ jobs:
     - name: Baixar e configurar EdgeDriver compatível
       shell: bash
       run: |
-        # Detectar versão completa do Microsoft Edge
+        # Detectar versão do Microsoft Edge
         EDGE_VERSION=$(powershell "[System.Diagnostics.FileVersionInfo]::GetVersionInfo('C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe').FileVersion")
         echo "Detectada versão do Edge: $EDGE_VERSION"
 
-        # Obter prefixo major.minor.build (ex: 136.0.3240)
-        EDGE_VERSION_PREFIX=$(echo $EDGE_VERSION | cut -d'.' -f1-3)
-        echo "Prefixo da versão: $EDGE_VERSION_PREFIX"
+        # Extrair major version (ex: 136)
+        EDGE_MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
+        echo "Versão major do Edge: $EDGE_MAJOR_VERSION"
 
-        # Obter versão exata do EdgeDriver compatível
-        EDGE_DRIVER_VERSION=$(curl -s "https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_PREFIX}")
+        # Buscar última versão do EdgeDriver compatível
+        EDGE_DRIVER_VERSION=$(curl -s https://msedgedriver.azureedge.net/LATEST_RELEASE_$EDGE_MAJOR_VERSION)
         echo "Versão do EdgeDriver: $EDGE_DRIVER_VERSION"
 
-        # Montar URL de download
+        # Baixar e extrair o driver
         DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_VERSION}/edgedriver_win64.zip"
         echo "Baixando EdgeDriver de: $DRIVER_URL"
 
-        # Baixar o ZIP
-        curl -L -o edgedriver.zip $DRIVER_URL
+        curl -L -o edgedriver.zip "$DRIVER_URL"
 
-        # Validar ZIP
+        # Validar e extrair ZIP
         if ! unzip -t edgedriver.zip; then
-          echo "Falha ao baixar o EdgeDriver ou o arquivo não é válido."
+          echo "Falha ao baixar ou validar o EdgeDriver."
           exit 1
         fi
 
-        # Extrair e adicionar ao PATH
         unzip edgedriver.zip -d edgedriver
         echo "$(pwd)/edgedriver" >> $GITHUB_PATH
 
