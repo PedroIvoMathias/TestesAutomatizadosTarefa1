@@ -1,0 +1,34 @@
+name: Executar Testes Automatizados
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Instalar .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restaurar dependências
+      run: dotnet restore
+
+    - name: Instalar Microsoft Edge e EdgeDriver
+      run: |
+        choco install microsoft-edge -y
+        choco install edgedriver -y
+
+    - name: Adicionar EdgeDriver ao PATH
+      run: echo "C:\ProgramData\chocolatey\bin" >> $env:GITHUB_PATH
+
+    - name: Executar testes
+      run: dotnet test --no-build --verbosity normal
