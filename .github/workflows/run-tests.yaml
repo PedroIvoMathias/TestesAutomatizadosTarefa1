@@ -17,11 +17,18 @@ jobs:
         id: check_edge_version
         run: |
           $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-          $edgeVersion = (Get-ItemProperty -Path $edgePath).Version
-          $majorVersion = $edgeVersion.Split('.')[0]
-          echo "Versão do Edge: $edgeVersion"
-          echo "Versão major: $majorVersion"
-          echo "::set-output name=major_version::$majorVersion"
+          
+          # Verificar se o Edge está instalado no caminho especificado
+          if (Test-Path $edgePath) {
+            $edgeVersion = (Get-ItemProperty -Path $edgePath).Version
+            $majorVersion = $edgeVersion.Split('.')[0]
+            Write-Host "Versão do Edge: $edgeVersion"
+            Write-Host "Versão major: $majorVersion"
+            echo "::set-output name=major_version::$majorVersion"
+          } else {
+            Write-Error "Edge não encontrado no caminho $edgePath"
+            exit 1
+          }
 
       - name: Baixar EdgeDriver
         id: download_edge_driver
