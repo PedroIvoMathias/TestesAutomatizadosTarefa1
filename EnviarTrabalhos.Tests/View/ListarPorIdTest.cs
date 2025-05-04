@@ -16,7 +16,7 @@ namespace EnviarTrabalhos.Tests.View
             using var driver = new EdgeDriver();
             driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/ListarTrabalhos");
 
-            driver.FindElement(By.Id("id")).SendKeys("1"); // Um ID conhecido que exista no banco
+            driver.FindElement(By.Id("id")).SendKeys("6"); // Um ID conhecido que exista no banco
             driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
             Assert.Contains("Resultado da Busca", driver.PageSource);
