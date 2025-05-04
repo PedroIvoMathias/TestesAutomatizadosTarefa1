@@ -22,13 +22,19 @@ jobs:
     - name: Restaurar dependências
       run: dotnet restore
 
-    - name: Instalar Microsoft Edge e EdgeDriver
-      run: |
-        choco install microsoft-edge -y
-        choco install edgedriver -y
+    - name: Instalar Microsoft Edge (se necessário)
+      run: choco install microsoft-edge -y
 
-    - name: Adicionar EdgeDriver ao PATH
-      run: echo "C:\ProgramData\chocolatey\bin" >> $env:GITHUB_PATH
+    - name: Baixar e configurar EdgeDriver manualmente
+      shell: bash
+      run: |
+        EDGE_VERSION=$(powershell "(Get-AppxPackage -Name Microsoft.MicrosoftEdge.Stable).Version")
+        EDGE_MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
+        echo "Detectada versão do Edge: $EDGE_VERSION (maior: $EDGE_MAJOR_VERSION)"
+
+        curl -L -o edgedriver.zip https://msedgedriver.azureedge.net/${EDGE_MAJOR_VERSION}.0.0.0/edgedriver_win64.zip
+        unzip edgedriver.zip -d edgedriver
+        echo "$(pwd)/edgedriver" >> $GITHUB_PATH
 
     - name: Executar testes
       run: dotnet test --no-build --verbosity normal
