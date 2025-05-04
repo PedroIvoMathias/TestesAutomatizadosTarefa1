@@ -16,24 +16,36 @@ jobs:
       - name: Verificar versão do Edge
         id: check_edge_version
         run: |
-          # Tentar buscar a versão do Edge no registro
-          $regKey = "HKLM:\SOFTWARE\Microsoft\Edge\BLBeacon"
-          
-          if (Test-Path $regKey) {
-            $edgeVersion = (Get-ItemProperty -Path $regKey).version
-            if ($null -ne $edgeVersion) {
-              $majorVersion = $edgeVersion.Split('.')[0]
-              Write-Host "Versão do Edge: $edgeVersion"
-              Write-Host "Versão major: $majorVersion"
-              echo "::set-output name=major_version::$majorVersion"
-            } else {
-              Write-Error "Não foi possível obter a versão do Edge."
-              exit 1
+          # Caminhos padrões do Edge
+          $edgePaths = @(
+            "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            "C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+          )
+
+          $edgePath = $null
+          foreach ($path in $edgePaths) {
+            if (Test-Path $path) {
+              $edgePath = $path
+              break
             }
-          } else {
-            Write-Error "Edge não encontrado no registro. Certifique-se de que o Microsoft Edge está instalado."
+          }
+
+          if ($null -eq $edgePath) {
+            Write-Error "Microsoft Edge não encontrado nos caminhos padrão. Certifique-se de que o Edge está instalado."
             exit 1
           }
+
+          # Obter a versão do Edge
+          $edgeVersion = (& $edgePath --version).Trim()
+          if ($null -eq $edgeVersion) {
+            Write-Error "Não foi possível obter a versão do Microsoft Edge."
+            exit 1
+          }
+
+          $majorVersion = $edgeVersion.Split('.')[0]
+          Write-Host "Versão do Edge: $edgeVersion"
+          Write-Host "Versão major: $majorVersion"
+          echo "::set-output name=major_version::$majorVersion"
 
       - name: Baixar EdgeDriver
         id: download_edge_driver
