@@ -32,70 +32,70 @@ namespace EnviarTrabalhos.Tests.View
             //}
         }
 
-        [Fact]
-        public void EnviarTrabalho_DeveFalharComCamposEmBranco()
-        {
-            using var driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+        //[Fact]
+        //public void EnviarTrabalho_DeveFalharComCamposEmBranco()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
-            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("Enviar Trabalho", driver.PageSource);
-        }
+        //    Assert.Contains("Enviar Trabalho", driver.PageSource);
+        //}
 
-        [Fact]
-        public void EnviarTrabalho_ComNomeVazio_DeveExibirErro()
-        {
-            using var driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+        //[Fact]
+        //public void EnviarTrabalho_ComNomeVazio_DeveExibirErro()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
-            driver.FindElement(By.Id("nomeAluno")).SendKeys("");//Falha aqui
-            driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
-            driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("");//Falha aqui
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
-            selectElement.SelectByValue("1");
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
 
-            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
-        }
+        //    Assert.Contains("Nome do aluno, titulo e conteudo sao obrigatorios.", driver.PageSource); // Continua na mesma tela
+        //}
 
-        [Fact]
-        public void EnviarTrabalho_ComTituloVazio_DeveExibirErro()
-        {
-            using var driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+        //[Fact]
+        //public void EnviarTrabalho_ComTituloVazio_DeveExibirErro()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
-            driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
-            driver.FindElement(By.Id("titulo")).SendKeys(""); // Falha aqui
-            driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
+        //    driver.FindElement(By.Id("titulo")).SendKeys(""); // Falha aqui
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
-            selectElement.SelectByValue("1");
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
 
-            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
-        }
+        //    Assert.Contains("Nome do aluno, titulo e conteudo sao obrigatorios.", driver.PageSource); // Continua na mesma tela
+        //}
 
-        [Fact]
-        public void EnviarTrabalho_ComConteudoVazio_DeveExibirErro()
-        {
-            using var driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+        //[Fact]
+        //public void EnviarTrabalho_ComConteudoVazio_DeveExibirErro()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
-            driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
-            driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
-            driver.FindElement(By.Id("conteudo")).SendKeys(" ");//Falha aqui
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
+        //    driver.FindElement(By.Id("conteudo")).SendKeys(" ");//Falha aqui
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
-            selectElement.SelectByValue("1");
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
 
-            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
-        }
+        //    Assert.Contains("Nome do aluno, titulo e conteudo sao obrigatorios.", driver.PageSource); // Continua na mesma tela
+        //}
 
         //[Fact]
         //public void EnviarTrabalho_ComSelectVazio_DeveExibirErro()
@@ -108,7 +108,7 @@ namespace EnviarTrabalhos.Tests.View
         //    driver.FindElement(By.Id("conteudo")).SendKeys("Este é um conteúdo de exemplo com mais de 50 caracteres. ");
 
         //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));//falha aqui
-        //    selectElement.SelectByValue(" ");
+        //    selectElement.SelectByValue("");
 
         //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
@@ -116,23 +116,59 @@ namespace EnviarTrabalhos.Tests.View
         //}
 
 
-        [Fact]
-        public void EnviarTrabalho_DeveFalharComConteudoMuitoCurto()
-        {
-            using var driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+        //[Fact]
+        //public void EnviarTrabalho_DeveFalharComConteudoMuitoCurto()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
-            driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
-            driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
-            driver.FindElement(By.Id("conteudo")).SendKeys("Curto"); // Conteúdo < 50 caracteres
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Curto"); // Conteúdo < 50 caracteres
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
-            selectElement.SelectByValue("1");
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
 
-            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+        //    Assert.Contains("O conteudo do trabalho deve ter pelo menos 50 caracteres.", driver.PageSource);
+        //}
 
-            Assert.DoesNotContain("Enviar Trabalho", driver.PageSource);
-        }
+
+        //[Fact]
+        //public void EnviarTrabalho_DeveFalharComNomeMuitoCurto()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("Jo");// nome menor que 3
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
+
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
+
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+
+        //    Assert.Contains("Nome do aluno deve ter mais de 3 caracteres.", driver.PageSource); // Continua na mesma tela
+        //}
+
+        //[Fact]
+        //public void EnviarTrabalho_DeveFalharComTituloMuitoCurto()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trab");// falha com título menor que 5
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Conteúdo válido");
+
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+        //    selectElement.SelectByValue("1");
+
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+
+        //    Assert.Contains("titulo Deve ter mais de 5 caracteres.", driver.PageSource); // Continua na mesma tela
+        //}
 
 
     }

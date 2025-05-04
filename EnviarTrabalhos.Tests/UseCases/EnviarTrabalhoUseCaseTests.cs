@@ -75,18 +75,18 @@ namespace EnviarTrabalhos.Tests.UseCases
             Assert.Equal("Trabalho enviado com sucesso", resultado.Status);
         }
 
-        //[Fact]
-        //public async Task Execute_NomeComEspacosEmBranco_DeveLancarBusinessException()
-        //{
-        //    var entrada = new EnviarTrabalhoEntradaDTO
-        //    {
-        //        NomeAluno = "   ",  // Só espaços
-        //        Titulo = "Título",
-        //        Conteudo = new string('A', 60)
-        //    };
+        [Fact]
+        public async Task Execute_NomeComEspacosEmBranco_DeveLancarBusinessException()
+        {
+            var entrada = new EnviarTrabalhoEntradaDTO
+            {
+                NomeAluno = "   ",  // Só espaços
+                Titulo = "Título",
+                Conteudo = new string('A', 60)
+            };
 
-        //    await Assert.ThrowsAsync<BusinessException>(() => _useCase.Execute(entrada));
-        //}
+            await Assert.ThrowsAsync<BusinessException>(() => _useCase.Execute(entrada));
+        }
 
         [Fact]
         public async Task Execute_ConteudoMuitoGrande_DeveRetornarSaida()
