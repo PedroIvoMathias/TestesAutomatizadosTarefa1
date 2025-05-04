@@ -13,64 +13,43 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Verificar versão do Edge
-        id: check_edge_version
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Obter versão do Edge e baixar EdgeDriver
+        shell: pwsh
         run: |
-          # Caminhos padrões do Edge
           $edgePaths = @(
             "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
             "C:\Program Files\Microsoft\Edge\Application\msedge.exe"
           )
 
-          $edgePath = $null
-          foreach ($path in $edgePaths) {
-            Write-Host "Verificando caminho: $path"
-            if (Test-Path $path) {
-              $edgePath = $path
-              Write-Host "Edge encontrado em: $path"
-              break
-            }
-          }
+          $edgePath = $edgePaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 
-          if ($null -eq $edgePath) {
-            Write-Error "Microsoft Edge não encontrado nos caminhos padrão. Certifique-se de que o Edge está instalado."
+          if (-not $edgePath) {
+            Write-Error "Microsoft Edge não encontrado."
             exit 1
           }
 
-          # Tentar obter a versão do Edge usando o comando 'Get-ItemProperty' no registro
-          Write-Host "Obtendo versão do Edge..."
-          $edgeVersion = (Get-ItemProperty "HKCU:\Software\Microsoft\Edge\BLBeacon" -Name version).version
-          if ($null -eq $edgeVersion) {
-            Write-Error "Não foi possível obter a versão do Microsoft Edge a partir do registro."
-            exit 1
-          }
+          Write-Host "Edge encontrado em: $edgePath"
+
+          # Obter versão do executável
+          $fileVersionInfo = (Get-Item $edgePath).VersionInfo
+          $edgeVersion = $fileVersionInfo.FileVersion
+          $majorVersion = $edgeVersion.Split('.')[0]
 
           Write-Host "Versão do Edge: $edgeVersion"
-          $majorVersion = $edgeVersion.Split('.')[0]
           Write-Host "Versão major: $majorVersion"
-          echo "::set-output name=major_version::$majorVersion"
 
-      - name: Baixar EdgeDriver
-        id: download_edge_driver
-        run: |
-          $majorVersion = ${{ steps.check_edge_version.outputs.major_version }}
-          $driverUrl = "https://msedgedriver.azureedge.net/$majorVersion.0/$majorVersion.0.0/edgedriver_win64.zip"
-          echo "Baixando EdgeDriver de: $driverUrl"
+          $driverUrl = "https://msedgedriver.azureedge.net/$edgeVersion/edgedriver_win64.zip"
+          Write-Host "Baixando EdgeDriver de: $driverUrl"
+
           Invoke-WebRequest -Uri $driverUrl -OutFile "edgedriver.zip"
+          Expand-Archive -Path "edgedriver.zip" -DestinationPath "C:\edgedriver"
+          echo "C:\edgedriver" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
 
-      - name: Extrair EdgeDriver
-        run: |
-          Expand-Archive -Path "edgedriver.zip" -DestinationPath "C:\drivers"
+      - name: Instalar dependências
+        run: dotnet restore
 
-      - name: Configurar o PATH do EdgeDriver
-        run: |
-          $env:Path += ";C:\drivers"
-          Write-Host "EdgeDriver configurado no PATH"
-
-      - name: Instalar Dependências do Projeto
-        run: |
-          dotnet restore
-
-      - name: Rodar todos os testes
-        run: |
-          dotnet test --configuration Release
+      - name: Rodar todos os testes (incluindo Selenium)
+        run: dotnet test --configuration Release
