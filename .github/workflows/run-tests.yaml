@@ -21,10 +21,15 @@ jobs:
           # Verificar se o Edge está instalado no caminho especificado
           if (Test-Path $edgePath) {
             $edgeVersion = (Get-ItemProperty -Path $edgePath).Version
-            $majorVersion = $edgeVersion.Split('.')[0]
-            Write-Host "Versão do Edge: $edgeVersion"
-            Write-Host "Versão major: $majorVersion"
-            echo "::set-output name=major_version::$majorVersion"
+            if ($null -ne $edgeVersion) {
+              $majorVersion = $edgeVersion.Split('.')[0]
+              Write-Host "Versão do Edge: $edgeVersion"
+              Write-Host "Versão major: $majorVersion"
+              echo "::set-output name=major_version::$majorVersion"
+            } else {
+              Write-Error "Não foi possível obter a versão do Edge."
+              exit 1
+            }
           } else {
             Write-Error "Edge não encontrado no caminho $edgePath"
             exit 1
