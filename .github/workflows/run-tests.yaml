@@ -24,8 +24,10 @@ jobs:
 
           $edgePath = $null
           foreach ($path in $edgePaths) {
+            Write-Host "Verificando caminho: $path"
             if (Test-Path $path) {
               $edgePath = $path
+              Write-Host "Edge encontrado em: $path"
               break
             }
           }
@@ -36,12 +38,14 @@ jobs:
           }
 
           # Obter a versão do Edge
-          $edgeVersion = (& $edgePath --version).Trim()
+          Write-Host "Obtendo versão do Edge..."
+          $edgeVersion = (& $edgePath --version) 2>&1
           if ($null -eq $edgeVersion) {
             Write-Error "Não foi possível obter a versão do Microsoft Edge."
             exit 1
           }
 
+          $edgeVersion = $edgeVersion.Trim()
           $majorVersion = $edgeVersion.Split('.')[0]
           Write-Host "Versão do Edge: $edgeVersion"
           Write-Host "Versão major: $majorVersion"
