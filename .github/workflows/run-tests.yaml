@@ -1,4 +1,4 @@
-name: Testes com Selenium
+name: Testes com Edge
 
 on:
   push:
@@ -7,37 +7,39 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test-with-edge:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout do repositório
+      - name: Checkout do código
         uses: actions/checkout@v3
 
       - name: Detectar e baixar EdgeDriver compatível
         shell: pwsh
         run: |
           $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+          if (-Not (Test-Path $edgePath)) {
+            throw "Microsoft Edge não encontrado no caminho padrão: $edgePath"
+          }
+
           $edgeVersion = (Get-Item $edgePath).VersionInfo.FileVersion
           Write-Host "Versão do Edge: $edgeVersion"
 
           $major = $edgeVersion.Split('.')[0]
           Write-Host "Versão major: $major"
 
-          # Obter a versão do EdgeDriver com codificação correta
           $response = Invoke-WebRequest -Uri "https://msedgedriver.azureedge.net/LATEST_RELEASE_$major"
-          $driverVersion = $response.Content.Trim()
+          $driverVersion = [System.Text.Encoding]::UTF8.GetString($response.Content).Trim()
           Write-Host "Versão do EdgeDriver: $driverVersion"
 
           $driverUrl = "https://msedgedriver.azureedge.net/$driverVersion/edgedriver_win64.zip"
           Write-Host "Baixando EdgeDriver de: $driverUrl"
 
           Invoke-WebRequest -Uri $driverUrl -OutFile "edgedriver.zip"
-
           Expand-Archive -Path "edgedriver.zip" -DestinationPath "edgedriver" -Force
 
           $edgedriverPath = Resolve-Path ".\edgedriver"
           echo "$edgedriverPath" | Out-File -Append -Encoding ascii $env:GITHUB_PATH
 
-      - name: Executar testes
+      - name: Rodar os testes com Selenium
         run: dotnet test
