@@ -20,8 +20,14 @@
         <button class="btn btn-primary btn-sm" type="submit">Buscar</button>
     </form>
 
-    @if (Model != null)
+    @if (Model == null)
     {
+        <h2>Resultado da Busca</h2>
+        <br />
+        <br />
+        <br />
+        <h3>Não foram localizados trabalhos para este Id!</h3>
+    }else{
         <h2>Resultado da Busca</h2>
         <p><strong>ID:</strong> @Model.TrabalhoId</p>
         <p><strong>Aluno:</strong> @Model.NomeAluno</p>
@@ -29,6 +35,7 @@
         <p><strong>Conteúdo:</strong> @Model.Conteudo</p>
         <p><strong>Data de Envio:</strong> @Model.DataEnvio</p>
     }
+
 </body>
 </html>
 

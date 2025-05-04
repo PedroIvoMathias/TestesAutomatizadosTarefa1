@@ -20,13 +20,20 @@ namespace EnviarTrabalhos.Controllers
         public async Task< IActionResult> ListarTrabalhos()
         {
             var trabalhos = await _trabalhoRepository.ListarTodosAsync();
+            if (Request.Headers["Accept"].ToString().Contains("application/json"))
+            {
+                return Ok(trabalhos); // Retorna JSON
+            }
             return View(trabalhos);
         }
         
         public async Task< IActionResult> ListarPorId(int id)
         {
             var trabalho = await _trabalhoRepository.ObterPorIdAsync(id);
-
+            if (Request.Headers["Accept"].ToString().Contains("application/json"))
+            {
+                return Ok(trabalho); // Retorna JSON
+            }
             return View(trabalho);
         }
 
