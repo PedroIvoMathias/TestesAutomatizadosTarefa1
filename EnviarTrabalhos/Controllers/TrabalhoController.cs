@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EnviarTrabalhos.Controllers
 {
-    public class TrabalhoController : Controller
+    public class TrabalhoController : BaseTrabalhoController
     {//dependendo apenas das interfaces, não dos objetos em si.
         private readonly ITrabalhoRepository _trabalhoRepository;
         private readonly IUseCase<EnviarTrabalhoEntradaDTO, EnviarTrabalhoSaidaDTO> _enviarTrabalhoUseCase;
@@ -20,21 +20,13 @@ namespace EnviarTrabalhos.Controllers
         public async Task< IActionResult> ListarTrabalhos()
         {
             var trabalhos = await _trabalhoRepository.ListarTodosAsync();
-            if (Request.Headers["Accept"].ToString().Contains("application/json"))
-            {
-                return Ok(trabalhos); // Retorna JSON
-            }
-            return View(trabalhos);
+            return ApiOrView(trabalhos);
         }
         
         public async Task< IActionResult> ListarPorId(int id)
         {
             var trabalho = await _trabalhoRepository.ObterPorIdAsync(id);
-            if (Request.Headers["Accept"].ToString().Contains("application/json"))
-            {
-                return Ok(trabalho); // Retorna JSON
-            }
-            return View(trabalho);
+            return ApiOrView(trabalho);
         }
 
         public IActionResult EnviarTrabalho()
@@ -61,5 +53,11 @@ namespace EnviarTrabalhos.Controllers
             return RedirectToAction(nameof(ListarTrabalhos));
         }
 
+
+        private bool IsApiRequest()
+        {
+            var acceptHeader = Request.Headers["Accept"].ToString();
+            return acceptHeader.Contains("application/json", StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

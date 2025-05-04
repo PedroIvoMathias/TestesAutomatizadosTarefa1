@@ -3,6 +3,7 @@ using EnviarTrabalhos.Models.DTO;
 using EnviarTrabalhos.Models.Entities;
 using EnviarTrabalhos.Models.UseCase;
 using EnviarTrabalhos.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -25,7 +26,14 @@ namespace EnviarTrabalhos.Tests.Controllers
         [Fact]
         public async Task ListarTrabalhos_DeveRetornarViewComTrabalhos()
         {
+
             _mockRepo.Setup(r => r.ListarTodosAsync()).ReturnsAsync(new List<Trabalho>()); //aqui preparo o cenério
+            
+            _controller.ControllerContext = new ControllerContext// Inserindo o contexto como sendo http
+            {
+                HttpContext = new DefaultHttpContext()
+            };
+            _controller.ControllerContext.HttpContext.Request.Headers["Accept"] = "text/html";
 
             var result = await _controller.ListarTrabalhos(); //Executar a ação que será testada
 
@@ -38,7 +46,13 @@ namespace EnviarTrabalhos.Tests.Controllers
         {
             var trabalho = new Trabalho(1, "Aluno", "Titulo", "Conteudo", DateTime.UtcNow);
             _mockRepo.Setup(r => r.ObterPorIdAsync(1)).ReturnsAsync(trabalho);
-
+            
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            };
+            
+            _controller.ControllerContext.HttpContext.Request.Headers["Accept"] = "text/html";// Inserindo o contexto como sendo http
             var result = await _controller.ListarPorId(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
@@ -54,6 +68,7 @@ namespace EnviarTrabalhos.Tests.Controllers
 
         //    Assert.IsType<NotFoundResult>(result);
         //}
+
 
         [Fact]
         public async Task EnviarTrabalho_ModeloInvalido_DeveRetornarView()
