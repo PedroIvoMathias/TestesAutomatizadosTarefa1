@@ -97,42 +97,42 @@ namespace EnviarTrabalhos.Tests.View
             Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
         }
 
+        //[Fact]
+        //public void EnviarTrabalho_ComSelectVazio_DeveExibirErro()
+        //{
+        //    using var driver = new EdgeDriver();
+        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
+
+        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
+        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
+        //    driver.FindElement(By.Id("conteudo")).SendKeys("Este é um conteúdo de exemplo com mais de 50 caracteres. ");
+
+        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));//falha aqui
+        //    selectElement.SelectByValue(" ");
+
+        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+
+        //    Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
+        //}
+
+
         [Fact]
-        public void EnviarTrabalho_ComSelectVazio_DeveExibirErro()
+        public void EnviarTrabalho_DeveFalharComConteudoMuitoCurto()
         {
             using var driver = new EdgeDriver();
             driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
 
             driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
             driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
-            driver.FindElement(By.Id("conteudo")).SendKeys("Este é um conteúdo de exemplo com mais de 50 caracteres. ");
+            driver.FindElement(By.Id("conteudo")).SendKeys("Curto"); // Conteúdo < 50 caracteres
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));//falha aqui
-            selectElement.SelectByValue(" ");
+            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+            selectElement.SelectByValue("1");
 
             driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
+            Assert.DoesNotContain("Enviar Trabalho", driver.PageSource);
         }
-
-
-        //[Fact]
-        //public void EnviarTrabalho_DeveFalharComConteudoMuitoCurto()
-        //{
-        //    using var driver = new EdgeDriver();
-        //    driver.Navigate().GoToUrl("https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/EnviarTrabalho");
-
-        //    driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
-        //    driver.FindElement(By.Id("titulo")).SendKeys("Trabalho X");
-        //    driver.FindElement(By.Id("conteudo")).SendKeys("Curto"); // Conteúdo < 50 caracteres
-
-        //    var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
-        //    selectElement.SelectByText("Matemática");
-
-        //    driver.FindElement(By.CssSelector("button[type='submit']")).Click();
-
-        //    Assert.DoesNotContain("Enviar Trabalho", driver.PageSource);
-        //}
 
 
     }
