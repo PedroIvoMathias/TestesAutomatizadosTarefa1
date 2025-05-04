@@ -102,6 +102,12 @@ namespace EnviarTrabalhos.Exceptions
 
         private static Task HandleExceptionAsync(HttpContext context, HttpStatusCode statusCode, string message)
         {
+            var acceptHeader = context.Request.Headers["Accept"].FirstOrDefault() ?? "";
+            if (acceptHeader.Contains("text/html") || acceptHeader.Contains("*/*"))
+            {
+                context.Response.Redirect($"/Trabalho/EnviarTrabalho?erro={WebUtility.UrlEncode(message)}");
+                return Task.CompletedTask;
+            }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
 

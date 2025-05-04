@@ -40,7 +40,7 @@ namespace EnviarTrabalhos.Tests.View
 
             driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.Contains("required", driver.PageSource);
+            Assert.Contains("Enviar Trabalho", driver.PageSource);
         }
 
         [Fact]
@@ -97,6 +97,7 @@ namespace EnviarTrabalhos.Tests.View
             Assert.Contains("Enviar Trabalho", driver.PageSource); // Continua na mesma tela
         }
 
+        [Fact]
         public void EnviarTrabalho_ComSelectVazio_DeveExibirErro()
         {
             using var driver = new EdgeDriver();
@@ -104,9 +105,9 @@ namespace EnviarTrabalhos.Tests.View
 
             driver.FindElement(By.Id("nomeAluno")).SendKeys("João Silva");
             driver.FindElement(By.Id("titulo")).SendKeys("Trabalho de Matemática");
-            driver.FindElement(By.Id("conteudo")).SendKeys(" ");//Falha aqui
+            driver.FindElement(By.Id("conteudo")).SendKeys("Este é um conteúdo de exemplo com mais de 50 caracteres. ");
 
-            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));
+            var selectElement = new SelectElement(driver.FindElement(By.Id("disciplina")));//falha aqui
             selectElement.SelectByValue(" ");
 
             driver.FindElement(By.CssSelector("button[type='submit']")).Click();
@@ -130,7 +131,7 @@ namespace EnviarTrabalhos.Tests.View
 
             driver.FindElement(By.CssSelector("button[type='submit']")).Click();
 
-            Assert.DoesNotContain("Trabalhos Enviados", driver.PageSource);
+            Assert.DoesNotContain("Enviar Trabalho", driver.PageSource);
         }
 
 

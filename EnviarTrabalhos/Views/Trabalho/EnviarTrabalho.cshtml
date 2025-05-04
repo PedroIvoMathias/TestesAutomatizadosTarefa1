@@ -2,6 +2,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+	
+		var erro = Context.Request.Query["erro"].ToString();
+	
+	if (!string.IsNullOrEmpty(erro))
+	{
+		<div class="alert alert-danger">
+			@erro
+		</div>
+	}
 }
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,22 +25,22 @@
 	<form asp-action="EnviarTrabalho" method="post">
 		<div class="mb-3">
 			<label for="nomeAluno" class="form-label">Nome do Aluno:</label>
-			<input type="text" class="form-control" id="nomeAluno" name="NomeAluno" placeholder="seu Nome" required>
+			<input type="text" class="form-control" id="nomeAluno" name="NomeAluno" placeholder="seu Nome" required minlength="3">
 		</div>
 
 		<div class="mb-3">
 			<label for="titulo" class="form-label">Título:</label>
-			<input type="text" class="form-control" id="titulo" name="Titulo" placeholder="Título do seu trabalho" required><br><br>
+			<input type="text" class="form-control" id="titulo" name="Titulo" placeholder="Título do seu trabalho" required minlength="5"><br><br>
 		</div>
 
 		<div class="mb-3">
 			<label for="conteudo" class="form-label">Conteúdo:</label><br>
-			<textarea id="conteudo" class="form-control" name="Conteudo" rows="4" cols="50" required></textarea><br><br>
+			<textarea id="conteudo" class="form-control" name="Conteudo" rows="4" cols="50" required minlength="50"></textarea><br><br>
 		</div>
 
 		<label for="disciplina">Disciplina:</label>
-		<select name="Disciplina" id="disciplina" class="form-select">
-			<option selected>Selecione a matéria</option>
+		<select name="Disciplina" id="disciplina" class="form-select" required>
+			<option value=""> Selecione a matéria</option>
 			<option value="1">Matemática</option>
 			<option value="2">História</option>
 			<option value="3">Biologia</option>

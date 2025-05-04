@@ -480,3 +480,4 @@ C:\Users\coont\Documents\Faculdade matéria Teste\Testes Automatizados\TestesAut
 C:\Users\coont\Documents\Faculdade matéria Teste\Testes Automatizados\TestesAutomatizadosTarefa1\EnviarTrabalhos\obj\Debug\net8.0\EnviarTrabalhos.pdb
 C:\Users\coont\Documents\Faculdade matéria Teste\Testes Automatizados\TestesAutomatizadosTarefa1\EnviarTrabalhos\obj\Debug\net8.0\EnviarTrabalhos.genruntimeconfig.cache
 C:\Users\coont\Documents\Faculdade matéria Teste\Testes Automatizados\TestesAutomatizadosTarefa1\EnviarTrabalhos\obj\Debug\net8.0\ref\EnviarTrabalhos.dll
+C:\Users\coont\Documents\Faculdade matéria Teste\Testes Automatizados\TestesAutomatizadosTarefa1\EnviarTrabalhos\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

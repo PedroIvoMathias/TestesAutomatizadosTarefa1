@@ -14,10 +14,18 @@ namespace EnviarTrabalhos.Models.UseCase
 
             // Validação dos dados de entrada
             if (string.IsNullOrWhiteSpace(entrada.NomeAluno) || string.IsNullOrWhiteSpace(entrada.Titulo) || string.IsNullOrWhiteSpace(entrada.Conteudo))
-                throw new BusinessException("Nome do aluno, título e conteúdo são obrigatórios.");
+                throw new BusinessException("Nome do aluno, titulo e conteudo sao obrigatorios.");
+            
+            if ((entrada.NomeAluno.Length < 3 ))
+                throw new BusinessException("Nome do aluno deve ter mais de 3 caracteres.");
+            
+            if ((entrada.Titulo.Length < 5 ))
+                throw new BusinessException("titulo Deve ter mais de 5 caracteres.");
 
+      
+            
             if (entrada.Conteudo.Length < 50)  // Validação simples de conteúdo
-                throw new BusinessException("O conteúdo do trabalho deve ter pelo menos 50 caracteres.");
+                throw new BusinessException("O conteudo do trabalho deve ter pelo menos 50 caracteres.");
 
             // Criação do objeto Trabalho
             var trabalho = new Trabalho(
