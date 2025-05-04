@@ -33,8 +33,8 @@ jobs:
         EDGE_MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
         echo "Detectada versão do Edge: $EDGE_VERSION (maior: $EDGE_MAJOR_VERSION)"
 
-        # Baixar o EdgeDriver correspondente à versão detectada
-        DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_MAJOR_VERSION}.0.0.0/edgedriver_win64.zip"
+        # Tentar uma URL mais geral para o EdgeDriver
+        DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_MAJOR_VERSION}.0.0/edgedriver_win64.zip"
         echo "Baixando EdgeDriver de: $DRIVER_URL"
         
         curl -L -o edgedriver.zip $DRIVER_URL
