@@ -129,5 +129,28 @@ namespace EnviarTrabalhos.Tests.Controllers
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("ListarTrabalhos", redirectResult.ActionName);
         }
+
+        [Fact]
+        public async Task ListarPorId_ComIdInvalido_DeveRetornarViewComModelNulo()
+        {
+            // Arrange
+            int idInvalido = 999;
+            _mockRepo.Setup(r => r.ObterPorIdAsync(idInvalido)).ReturnsAsync((Trabalho)null);
+
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            };
+            _controller.ControllerContext.HttpContext.Request.Headers["Accept"] = "text/html";
+
+            // Act
+            var result = await _controller.ListarPorId(idInvalido);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Null(viewResult.Model);
+        }
+
+
     }
 }

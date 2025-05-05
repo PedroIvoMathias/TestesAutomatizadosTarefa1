@@ -52,4 +52,5 @@ jobs:
         run: dotnet restore
 
       - name: Rodar todos os testes (incluindo Selenium)
-        run: dotnet test --configuration Release
+        run: dotnet test --configuration Release --verbosity normal
+  timeout-minutes: 5

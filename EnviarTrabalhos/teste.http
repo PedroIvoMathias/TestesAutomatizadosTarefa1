@@ -1,0 +1,21 @@
+GET https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/ListarTrabalhos
+Accept: application/json
+
+#############################################
+GET https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/ListarPorId?id=16
+Accept: application/json
+
+#############################################
+
+GET https://testesautomatizadostarefa1-production.up.railway.app/Trabalho/ListarPorId?id=16
+//Accept: application/json
+
+############################################
+POST https://testesautomatizadostarefa1-production.up.railway.app/API/Trabalho/EnviarTrabalho
+Content-Type: application/json
+
+{
+  "NomeAluno":"Ana",
+  "Titulo": "Meu trabalho",
+  "Conteudo": "Descrição do trabalho com mais de 50 caracteres!!!!"
+}

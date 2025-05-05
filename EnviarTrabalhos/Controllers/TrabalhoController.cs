@@ -53,6 +53,21 @@ namespace EnviarTrabalhos.Controllers
             return RedirectToAction(nameof(ListarTrabalhos));
         }
 
+        //Post, mas somente por API
+        [HttpPost("API/Trabalho/EnviarTrabalho")]
+        [Consumes("application/json")]
+        public async Task<IActionResult> EnviarTrabalhoApi([FromBody] EnviarTrabalhoEntradaDTO entrada)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var resultado = await _enviarTrabalhoUseCase.Execute(entrada);
+            await _trabalhoRepository.AdicionarAsync(resultado.Trabalho);
+
+            return Ok(resultado);
+        }
 
         private bool IsApiRequest()
         {
