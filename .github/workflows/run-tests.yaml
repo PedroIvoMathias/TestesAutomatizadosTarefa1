@@ -53,4 +53,4 @@ jobs:
 
       - name: Rodar todos os testes (incluindo Selenium)
         run: dotnet test --configuration Release --verbosity normal
-  timeout-minutes: 5
+  #timeout-minutes: 5
